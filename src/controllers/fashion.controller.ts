@@ -1,19 +1,21 @@
 import { Request, Response } from "express";
 import Fashion from "../models/fashion.model";
 
-export async function create(
+// *INFO: Exercise 128
+export async function list(
   request: Request,
   response: Response
 ): Promise<Response> {
   try {
-    const newFashion = request.body;
-    const fashion = await Fashion.create(newFashion);
-    return response.status(204).json(fashion);
+    // TODO: Update filter later
+    const fashion = await Fashion.find();
+    return response.status(200).json(fashion);
   } catch (error) {
     return response.status(500).json(error);
   }
 }
 
+// *INFO: Exercise 129
 export async function detail(
   request: Request,
   response: Response
@@ -27,6 +29,21 @@ export async function detail(
   }
 }
 
+// *INFO: Exercise 130
+export async function create(
+  request: Request,
+  response: Response
+): Promise<Response> {
+  try {
+    const newFashion = request.body;
+    const fashion = await Fashion.create(newFashion);
+    return response.status(204).json(fashion);
+  } catch (error) {
+    return response.status(500).json(error);
+  }
+}
+
+// *INFO: Exercise 131
 export async function update(
   request: Request,
   response: Response
@@ -41,6 +58,7 @@ export async function update(
   }
 }
 
+// *INFO: Exercise 132
 export async function remove(
   request: Request,
   response: Response
@@ -51,18 +69,5 @@ export async function remove(
     response.status(204).end();
   } catch (error) {
     response.status(500).json(error);
-  }
-}
-
-export async function list(
-  request: Request,
-  response: Response
-): Promise<Response> {
-  try {
-    // TODO: Update filter later
-    const fashion = await Fashion.find();
-    return response.status(200).json(fashion);
-  } catch (error) {
-    return response.status(500).json(error);
   }
 }
