@@ -4,17 +4,19 @@ const Schema = mongoose.Schema;
 
 const fashion = new Schema(
   {
-    fashionTitle: {
+    style: {
       type: String,
       required: true,
     },
-    fashionDetails: {
+    subject: {
       type: String,
+      required: true,
     },
-    thumbnail: {
-      type: Buffer,
+    detail: {
+      type: String,
+      required: true,
     },
-    fashionStyle: {
+    image: {
       type: String,
       required: true,
     },

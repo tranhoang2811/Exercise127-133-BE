@@ -11,7 +11,6 @@ export async function list(
   response: Response
 ): Promise<Response> {
   try {
-    // TODO: Update filter later
     const fashions = await Fashion.find();
     return response.status(200).json(normalizeId(fashions));
   } catch (error) {
