@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import Fashion from "../models/fashion.model";
 
+// TODO: Fix type later
+const normalizeId = require('normalize-mongo-id');
+
+
 // *INFO: Exercise 128
 export async function list(
   request: Request,
@@ -8,8 +12,8 @@ export async function list(
 ): Promise<Response> {
   try {
     // TODO: Update filter later
-    const fashion = await Fashion.find();
-    return response.status(200).json(fashion);
+    const fashions = await Fashion.find();
+    return response.status(200).json(normalizeId(fashions));
   } catch (error) {
     return response.status(500).json(error);
   }
@@ -23,7 +27,7 @@ export async function detail(
   try {
     const { id } = request.params;
     const fashion = await Fashion.findById(id);
-    return response.status(200).json(fashion);
+    return response.status(200).json(normalizeId(fashion));
   } catch (error) {
     return response.status(500).json(error);
   }
@@ -37,7 +41,7 @@ export async function create(
   try {
     const newFashion = request.body;
     const fashion = await Fashion.create(newFashion);
-    return response.status(204).json(fashion);
+    return response.status(204).json(normalizeId(fashion));
   } catch (error) {
     return response.status(500).json(error);
   }

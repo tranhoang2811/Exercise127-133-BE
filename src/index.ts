@@ -12,4 +12,7 @@ app.use(router);
 mongoose
   .connect(DB_CONNECT_STRING)
   .then(() => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
+  .catch((error) => {
+    console.log("Error connecting to DB");
+    console.log(error);
+  });
