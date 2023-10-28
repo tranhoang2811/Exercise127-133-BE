@@ -2,7 +2,19 @@ import { Request, Response } from "express";
 import AdvanceFashion from "../models/advance-fashion.model";
 import Style from "../models/style.model";
 
-export async function list(
+export async function adminList(
+  request: Request,
+  response: Response
+): Promise<Response> {
+  try {
+    const advanceFashions = await AdvanceFashion.find().populate("style");
+    return response.status(200).json(advanceFashions);
+  } catch (error) {
+    return response.status(500).json(error);
+  }
+}
+
+export async function clientList(
   request: Request,
   response: Response
 ): Promise<Response> {
