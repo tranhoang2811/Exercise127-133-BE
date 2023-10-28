@@ -16,6 +16,7 @@
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "mongoose": "^7.5.2",
+    "mongoose-lean-id": "^0.5.0",
     "normalize-mongo-id": "^2.0.0"
   },
   "devDependencies": {
